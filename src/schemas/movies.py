@@ -3,6 +3,10 @@ from typing import List, Optional
 from pydantic import BaseModel
 from pydantic import ConfigDict
 
+
+class Config:
+    model_config = ConfigDict(from_attributes=True)
+
 class MovieDetailResponseSchema(BaseModel):
     id: int
     name: str
@@ -14,12 +18,11 @@ class MovieDetailResponseSchema(BaseModel):
     orig_title: str
     status: str
     orig_lang: str
-    budget: Optional[int]
+    budget: Optional[float]
     revenue: Optional[float]
     country: str
 
-    class Config:
-        model_config = ConfigDict(from_attributes=True)
+
 
 class MovieListResponseSchema(BaseModel):
     movies: List[MovieDetailResponseSchema]
